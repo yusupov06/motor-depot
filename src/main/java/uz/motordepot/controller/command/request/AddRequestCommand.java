@@ -4,9 +4,7 @@ import uz.motordepot.controller.command.Command;
 import uz.motordepot.controller.router.Router;
 import uz.motordepot.exception.CommandException;
 import uz.motordepot.instanceHolder.InstanceHolder;
-import uz.motordepot.pagination.Page;
 import uz.motordepot.payload.RequestAddDTO;
-import uz.motordepot.payload.RequestDTO;
 import uz.motordepot.payload.UserDTO;
 import uz.motordepot.service.contract.RequestService;
 import uz.motordepot.utils.validator.FormValidator;
@@ -40,11 +38,10 @@ public class AddRequestCommand implements Command {
             String from = request.getParameter(PARAMETER_REQUEST_FROM);
             String to = request.getParameter(PARAMETER_REQUEST_TO);
             UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
-            boolean add = requestService.add(new RequestAddDTO(name, from, to,currentUser.getId()));
+            boolean add = requestService.add(new RequestAddDTO(name, from, to, currentUser.getId()));
             if (add) {
-                Page<RequestDTO> allByPage = requestService.findByPage(1, PAGE_COUNT);
-                session.setAttribute(SESSION_ATTR_PAGE, allByPage);
 
+                Commons.setRequestsPageByRoleToSession(session, 1);
                 return new Router(page, type);
             }
         } else {

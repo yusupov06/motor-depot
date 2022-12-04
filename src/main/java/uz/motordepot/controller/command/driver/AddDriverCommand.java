@@ -22,12 +22,11 @@ public class AddDriverCommand implements Command {
 
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
-        String page = ADD_DRIVER_PAGE;
         HttpSession session = request.getSession();
         int pagee = Integer.parseInt(request.getParameter(PAGINATION));
         Page<CarDTO> notActiveCars = carService.findByPageAndStatus(pagee, PAGE_COUNT, CarCondition.NOT_ACTIVE.name());
         session.setAttribute(SESSION_ATTR_PAGE, notActiveCars);
 
-        return new Router(page, FORWARD);
+        return new Router(ADD_DRIVER_PAGE, FORWARD);
     }
 }

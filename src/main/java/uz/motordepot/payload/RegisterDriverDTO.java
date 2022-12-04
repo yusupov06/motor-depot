@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,7 +17,6 @@ public class RegisterDriverDTO {
     private String password;
     private long carId;
     private long addedBy;
-
     public RegisterDriverDTO(String firstName, String lastName, String password, String phoneNumber, long carId) {
         this(firstName, lastName, phoneNumber, carId);
         this.password = password;

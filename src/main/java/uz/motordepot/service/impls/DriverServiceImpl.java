@@ -125,6 +125,11 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public boolean existsById(long id) {
+        return dao.existsById(id, DriverDao.EXIST_BY_ID);
+    }
+
+    @Override
     public void delete(Long id) {
         logger.info("DELETE DRIVER WITH ID {}", id);
         dao.delete(id);
@@ -165,13 +170,13 @@ public class DriverServiceImpl implements DriverService {
                 passwordEncoder.encode(rd.getPassword()), UserStatus.ACTIVE, new Role(1L, UserRole.DRIVER, ""));
 
         Car car;
-        if (carDao.existById(rd.getCarId(), CarDao.EXISTS_BY_ID)) {
+        if (carDao.existsById(rd.getCarId(), CarDao.EXISTS_BY_ID)) {
             car = new Car();
             car.setId(rd.getCarId());
         } else
             throw ServiceException.throwExc("Car not found with id " + rd.getCarId(), 404);
         User adder;
-        if (userDao.existById(rd.getAddedBy(), UserDao.EXIST_BY_ID)) {
+        if (userDao.existsById(rd.getAddedBy(), UserDao.EXIST_BY_ID)) {
             adder = new User();
             adder.setId(rd.getAddedBy());
         } else
@@ -199,7 +204,7 @@ public class DriverServiceImpl implements DriverService {
             user.setPassword(passwordEncoder.encode(rd.getPassword()));
         if (!driver.getCar().getId().equals(rd.getCarId())) {
             Car car;
-            if (carDao.existById(rd.getCarId(), CarDao.EXISTS_BY_ID)) {
+            if (carDao.existsById(rd.getCarId(), CarDao.EXISTS_BY_ID)) {
                 car = new Car();
                 car.setId(rd.getCarId());
             } else

@@ -1,7 +1,6 @@
 <%@ page import="uz.motordepot.controller.command.CommandType" %>
 <%@ page import="uz.motordepot.controller.navigation.AttributeParameterHolder" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -40,9 +39,16 @@
                         </c:if>
                     </ol>
                     <ol class="alert-danger">
-                        <c:if test="${sessionScope.invalid_form.email!=null}">
+                        <c:if test="${sessionScope.invalid_form.phoneNumber!=null}">
                             <div class="text-danger">
-                                    ${sessionScope.invalid_form.email}
+                                    ${sessionScope.invalid_form.phoneNumber}
+                            </div>
+                        </c:if>
+                    </ol>
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.carId!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.carId}
                             </div>
                         </c:if>
                     </ol>

@@ -4,9 +4,7 @@ import uz.motordepot.controller.command.Command;
 import uz.motordepot.controller.router.Router;
 import uz.motordepot.exception.CommandException;
 import uz.motordepot.instanceHolder.InstanceHolder;
-import uz.motordepot.pagination.Page;
 import uz.motordepot.payload.RequestAddDTO;
-import uz.motordepot.payload.RequestDTO;
 import uz.motordepot.payload.UserDTO;
 import uz.motordepot.service.contract.RequestService;
 import uz.motordepot.utils.validator.FormValidator;
@@ -44,9 +42,8 @@ public class FinishEditRequestCommand implements Command {
             long requestId = Long.parseLong(request.getParameter(PARAMETER_CURRENT_ID));
             boolean edit = requestService.edit(requestId, new RequestAddDTO(name, from, to, currentUser.getId()));
             if (edit) {
-                Page<RequestDTO> allByPage = requestService.findByPage(1, PAGE_COUNT);
-                session.setAttribute(SESSION_ATTR_PAGE, allByPage);
 
+                Commons.setRequestsPageByRoleToSession(session, 1);
                 session.removeAttribute(SESSION_ATTRIBUTE_EDITING);
                 return new Router(page, type);
             }

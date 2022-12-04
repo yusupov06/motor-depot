@@ -42,17 +42,17 @@ public class CruiseServiceImpl implements CruiseService {
         Driver driver;
         Request request;
         User user;
-        if (driverDao.existById(dto.getDriverId(), DriverDao.EXIST_BY_ID)) {
+        if (driverDao.existsById(dto.getDriverId(), DriverDao.EXIST_BY_ID)) {
             driver = new Driver();
             driver.setId(dto.getDriverId());
         } else
             throw ServiceException.throwExc("Driver not found with id " + dto.getDriverId(), 404);
-        if (requestDao.existById(dto.getRequestId(), RequestDao.EXIST_BY_ID)) {
+        if (requestDao.existsById(dto.getRequestId(), RequestDao.EXIST_BY_ID)) {
             request = new Request();
             request.setId(dto.getRequestId());
         } else
             throw ServiceException.throwExc("Request not found with id " + dto.getRequestId(), 404);
-        if (userDao.existById(dto.getAddedBy(), UserDao.EXIST_BY_ID)) {
+        if (userDao.existsById(dto.getAddedBy(), UserDao.EXIST_BY_ID)) {
             user = new User();
             user.setId(dto.getAddedBy());
         } else

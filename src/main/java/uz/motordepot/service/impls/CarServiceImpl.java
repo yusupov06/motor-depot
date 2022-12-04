@@ -32,7 +32,7 @@ public class CarServiceImpl implements CarService {
     }
 
     public Car fromCDto(CarAddDto carAddDto) {
-        if (userDao.existById(carAddDto.getAddedBy(), UserDao.EXIST_BY_ID)) {
+        if (userDao.existsById(carAddDto.getAddedBy(), UserDao.EXIST_BY_ID)) {
             Car build = Car.builder()
                     .carNumber(carAddDto.getCarNumber())
                     .carModel(CarModel.define(carAddDto.getCarModel()))

@@ -20,4 +20,6 @@ public interface DriverService extends CRUDService<RegisterDriverDTO ,DriverDTO>
     Optional<DriverDTO> findById(long driverId);
 
     DriverStatus getStatusById(Long id);
+
+    boolean existsById(long id);
 }

@@ -40,7 +40,7 @@ public class DeleteCarCommand implements Command {
         if (!condition.equals(CarCondition.NOT_ACTIVE)) {
             session.setAttribute(DELETING_MESSAGE, "You can not delete car because condition is " + condition);
         } else {
-            if (carDao.existById(carId, CarDao.EXISTS_BY_ID))
+            if (carDao.existsById(carId, CarDao.EXISTS_BY_ID))
                 carService.delete(carId);
             else
                 session.setAttribute(DELETING_MESSAGE, "Car not found with this id " + carId);

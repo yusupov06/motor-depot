@@ -25,10 +25,9 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean save(User user) throws DaoException {
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
-        ) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement;
-            if (user.getAddedAt() != null) {
+            if (user.getId() != null) {
                 statement = connection.prepareStatement(UPDATE_QUERY);
                 statement.setLong(7, user.getId());
             } else {
@@ -40,11 +39,13 @@ public class UserDaoImpl implements UserDao {
             statement.setString(4, user.getPassword());
             statement.setString(5, user.getStatus().name());
             statement.setLong(6, user.getRole().getId());
+
             statement.execute();
+
             return true;
         } catch (SQLException e) {
             logger.error("Error while saving user");
-            throw new DaoException("Error while saving user");
+            throw new DaoException(e.getMessage());
         }
 
     }
@@ -111,7 +112,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findNameById(long id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(FIND_NAME_BY_ID);
+            PreparedStatement statement = connection.prepareStatement(FIND_WITOUT_ROLE_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             User user;
@@ -121,12 +122,29 @@ public class UserDaoImpl implements UserDao {
                 user.setFirstName(resultSet.getString(FIRST_NAME));
                 user.setLastName(resultSet.getString(LAST_NAME));
                 user.setPhoneNumber(resultSet.getString(PHONE_NUMBER));
+                user.setStatus(UserStatus.define(resultSet.getString(STATUS)));
                 return Optional.of(user);
             }
             return Optional.empty();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         }
+    }
+
+    @Override
+    public boolean existsByPhoneNumber(String phoneNumber) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(FIND_NAME_BY_PHONE_NUMBER);
+            statement.setString(1, phoneNumber);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next())
+                return true;
+
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        }
+        return false;
     }
 
 

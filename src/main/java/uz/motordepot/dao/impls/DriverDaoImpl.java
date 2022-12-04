@@ -62,7 +62,7 @@ public class DriverDaoImpl implements DriverDao {
         driver.setCar(car);
 
         User user = userDao
-                .findNameById(resultSet.getLong(USER_ID))
+                .findById(resultSet.getLong(USER_ID))
                 .orElseThrow(() -> ServiceException.throwExc("Driver (user) not found", 404));
 
         User addedBy = userDao

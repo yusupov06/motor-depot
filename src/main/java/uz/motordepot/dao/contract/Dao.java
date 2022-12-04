@@ -21,7 +21,7 @@ public interface Dao<E, ID> {
     /**
      * Saving entity method
      *
-     * @param d entity that is saving
+     * @param entity that is saving
      * @return true if saved false otherwise
      * @throws DaoException when exception occurs when saving
      */
@@ -116,7 +116,7 @@ public interface Dao<E, ID> {
      * @param query database query that finds existed or not
      * @return true if exists otherwise false
      */
-    default boolean existById(ID id, String query) {
+    default boolean existsById(ID id, String query) {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, (Long) id);

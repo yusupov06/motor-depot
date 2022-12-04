@@ -6,8 +6,6 @@ import uz.motordepot.controller.router.Router;
 import uz.motordepot.entity.enums.RequestStatus;
 import uz.motordepot.exception.CommandException;
 import uz.motordepot.instanceHolder.InstanceHolder;
-import uz.motordepot.pagination.Page;
-import uz.motordepot.payload.RequestDTO;
 import uz.motordepot.service.contract.RequestService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +22,6 @@ public class DeleteRequestCommand implements Command {
 
     @Override
     public Router execute(@NotNull HttpServletRequest request) throws CommandException {
-        String page = REQUESTS_PAGE;
         HttpSession session = request.getSession();
 
         String parameter = request.getParameter(PARAMETER_CURRENT_ID);
@@ -43,8 +40,9 @@ public class DeleteRequestCommand implements Command {
             requestService.delete(id);
             session.setAttribute(DELETING_MESSAGE, "Deleted successfully");
         }
-        Page<RequestDTO> byPage = requestService.findByPage(1, PAGE_COUNT);
-        session.setAttribute(SESSION_ATTR_PAGE, byPage);
-        return new Router(page, REDIRECT);
+
+        Commons.setRequestsPageByRoleToSession(session,1);
+
+        return new Router(REQUESTS_PAGE, REDIRECT);
     }
 }

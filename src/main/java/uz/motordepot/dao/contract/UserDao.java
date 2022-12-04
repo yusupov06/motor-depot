@@ -18,12 +18,16 @@ public interface UserDao extends Dao<User, Long> {
             "INSERT INTO USERS(firstname, lastname, phone_number, password, status, role_id) VALUES (?,?,?,?,?,?);";
 
     String UPDATE_QUERY = """
-                update users set first_name = ?, last_name = ?, phone_number = ?, password = ?, status = ?,  role = ? where id = ?;
+                update users set firstname = ?, lastname = ?, phone_number = ?, password = ?, status = ?,  role_id = ? where id = ?;
+            """;
+    String UPDATE_QUERY_WITHOUT_ROLE = """
+                update users set firstname = ?, lastname = ?, phone_number = ?, password = ?, status = ? where id = ?;
             """;
     String FIND_BY_PHONE_NUMBER_AND_PASSWORD = "SELECT * FROM USERS WHERE phone_number LIKE ? AND password LIKE ?;";
     String FIND_BY_ID = "SELECT * FROM USERS WHERE id = ?;";
     String EXIST_BY_ID = "SELECT * FROM USERS WHERE id = ?;";
-    String FIND_NAME_BY_ID = "SELECT id, firstname,lastname, phone_number FROM USERS WHERE id = ?;";
+    String FIND_WITOUT_ROLE_BY_ID = "SELECT id, firstname,lastname, phone_number,status FROM USERS WHERE id = ?;";
+    String FIND_NAME_BY_PHONE_NUMBER = "SELECT id FROM USERS WHERE phone_number = ?;";
     String FIND_BY_PHONE_NUMBER = "SELECT * FROM USERS WHERE phone_number = ?;";
     String FIND_ALL = "SELECT * FROM USERS order by id desc;";
     String FIND_BY_PAGE = "SELECT * FROM USERS order by id desc offset ? limit ?;";
@@ -54,4 +58,10 @@ public interface UserDao extends Dao<User, Long> {
      * @throws DaoException
      */
     Optional<User> findNameById(long id) throws DaoException;
+
+    /**
+     * Check For existing by phoneNumber
+     * @param phoneNumber
+     */
+    boolean existsByPhoneNumber(String phoneNumber);
 }

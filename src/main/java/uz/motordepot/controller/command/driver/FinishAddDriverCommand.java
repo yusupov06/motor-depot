@@ -3,6 +3,7 @@ package uz.motordepot.controller.command.driver;
 import org.jetbrains.annotations.NotNull;
 import uz.motordepot.controller.command.Command;
 import uz.motordepot.controller.router.Router;
+import uz.motordepot.dao.contract.UserDao;
 import uz.motordepot.entity.enums.CarCondition;
 import uz.motordepot.exception.CommandException;
 import uz.motordepot.instanceHolder.InstanceHolder;
@@ -26,44 +27,53 @@ import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 public class FinishAddDriverCommand implements Command {
 
     private final DriverService driverService = InstanceHolder.getInstance(DriverService.class);
-    private final CarService carService  = InstanceHolder.getInstance(CarService.class);
+    private final CarService carService = InstanceHolder.getInstance(CarService.class);
+    private final UserDao userDao = InstanceHolder.getInstance(UserDao.class);
 
     @Override
     public Router execute(@NotNull HttpServletRequest request) throws CommandException {
-
-        String page = DRIVERS_PAGE;
-        Router.PageChangeType type = FORWARD;
 
         HttpSession session = request.getSession();
         Map<String, String[]> parameterMap = request.getParameterMap();
         FormValidator formValidator = new DriverFormValidator();
         Map<String, String> validationResult = formValidator.validate(parameterMap);
 
-        long carId = Long.parseLong(request.getParameter(PARAMETER_DRIVER_CAR_ID));
-
-        if (carService.getStatusById(carId).equals(CarCondition.ACTIVE)) {
-            validationResult.put(PARAMETER_DRIVER_CAR_ID,
-                    "You can not add this car because it's condition is " + CarCondition.ACTIVE.name());
-        }
-
         if (validationResult.isEmpty()) {
 
-            String firstName = request.getParameter(PARAMETER_DRIVER_FIRSTNAME);
-            String lastName = request.getParameter(PARAMETER_DRIVER_LASTNAME);
-            String driverEmail = request.getParameter(PARAMETER_DRIVER_PHONE_NUMBER);
-            String password = request.getParameter(PARAMETER_DRIVER_PASSWORD);
+            if (request.getParameter(PARAMETER_DRIVER_CAR_ID) != null) {
+                long carId = Long.parseLong(request.getParameter(PARAMETER_DRIVER_CAR_ID));
 
-            UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
-
-            boolean add = driverService.add(new RegisterDriverDTO(firstName, lastName, driverEmail, password, carId, currentUser.getId()));
-            if (add) {
-                Page<DriverDTO> byPage = driverService.findByPage(1, PAGE_COUNT);
-                session.setAttribute(SESSION_ATTR_PAGE, byPage);
-                return new Router(page, type);
+                if (carService.getStatusById(carId).equals(CarCondition.ACTIVE)) {
+                    validationResult.put(PARAMETER_DRIVER_CAR_ID,
+                            "You can not add this car because it's condition is " + CarCondition.ACTIVE.name());
+                }
             }
-        } else
+
+            if (request.getParameter(PARAMETER_DRIVER_PHONE_NUMBER) != null) {
+                if (userDao.existsByPhoneNumber(request.getParameter(PARAMETER_DRIVER_PHONE_NUMBER))) {
+                    validationResult.put(PARAMETER_DRIVER_PHONE_NUMBER,
+                            "this " + request.getParameter(PARAMETER_DRIVER_PHONE_NUMBER) + " phone number already taken ");
+                }
+            }
+            if (validationResult.isEmpty()) {
+                String firstName = request.getParameter(PARAMETER_DRIVER_FIRSTNAME);
+                String lastName = request.getParameter(PARAMETER_DRIVER_LASTNAME);
+                String driverPhoneNumber = request.getParameter(PARAMETER_DRIVER_PHONE_NUMBER);
+                String password = request.getParameter(PARAMETER_DRIVER_PASSWORD);
+
+                UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
+                long carId = Long.parseLong(request.getParameter(PARAMETER_DRIVER_CAR_ID));
+                driverService.add(new RegisterDriverDTO(firstName, lastName, password, driverPhoneNumber, carId, currentUser.getId()));
+            }
+        }
+
+        if (!validationResult.isEmpty()) {
             session.setAttribute(REQ_ATTRIBUTE_FORM_INVALID, validationResult);
-        return new Router(page, type);
+        }
+
+        Page<DriverDTO> byPage = driverService.findByPage(1, PAGE_COUNT);
+        session.setAttribute(SESSION_ATTR_PAGE, byPage);
+        return new Router(DRIVERS_PAGE, FORWARD);
 
     }
 }
