@@ -1,5 +1,6 @@
 # motor-depot
 
+
 <p align="center">
   <img alt="Survey" src="src/main/webapp/static/images/home.svg">
 </p>
@@ -9,7 +10,6 @@
 <h1>The platform supports only English language.</h1>
 
 # Description
-
 <div>
 Motor depot. The Dispatcher distributes Requests for Flights between Drivers, each of whom has his own Car assigned to them.
 A Car that is in good condition and whose characteristics correspond to the Application can be assigned to the Flight.
@@ -21,33 +21,34 @@ The driver makes a note about the performance of the Race and the condition of t
 <h3> Java EE / PostgreSQL / HTML5 / CSS3 / Bootstrap 5 / JavaScript / Command design pattern </h3>
 
 # Functional roles
-
+<p>
 The platform supports the following roles and their corresponded functionality.
 
-| Permission | MANAGER | DISPATCHER | DRIVER |
-| SIGN_IN | + | + | + |
-| LOG_OUT | + | + | + |
-| ADD_REQUEST | + | + | |
-| EDIT_REQUEST | + | + | |
-| DELETE_REQUEST | + | + | |
-| SHOW_REQUESTS | + | + | |
-| ADD_CRUISE | + | | |
-| EDIT_CRUISE | + | | |
-| DELETE_CRUISE | + | + | |
-| SHOW_CRUISES | + | | + |
-| EDIT_CRUISE_STATUS| + | | + |
-| ADD_DRIVER | + | | |
-| DELETE_DRIVER | + | | |
-| EDIT_DRIVER | + | | |
-| SHOW_DRIVERS | + | | |
-| ADD_CAR | + | | |
-| DELETE_CAR | + | | |
-| EDIT_CAR | + | | |
-| SHOW_CARS | + | | |
-| ADD_ROLE | + | | |
-| EDIT_ROLE | + | | |
-| DELETE_ROLE | + | | |
-| SHOW_ROLES | + | | |
+|  Permission        | MANAGER | DISPATCHER  | DRIVER |
+|  SIGN_IN           |    +    |      +      |    +   |
+|  LOG_OUT           |    +    |      +      |    +   |
+|  ADD_REQUEST       |    +    |      +      |        |
+|  EDIT_REQUEST      |    +    |      +      |        |
+|  DELETE_REQUEST    |    +    |      +      |        |
+|  SHOW_REQUESTS     |    +    |      +      |        |
+|  ADD_CRUISE        |    +    |             |        |
+|  EDIT_CRUISE       |    +    |             |        |
+|  DELETE_CRUISE     |    +    |      +      |        |
+|  SHOW_CRUISES      |    +    |             |    +   |
+|  EDIT_CRUISE_STATUS|    +    |             |    +   |
+|  ADD_DRIVER        |    +    |             |        |
+|  DELETE_DRIVER     |    +    |             |        |
+|  EDIT_DRIVER       |    +    |             |        |
+|  SHOW_DRIVERS      |    +    |             |        |
+|  ADD_CAR           |    +    |             |        |
+|  DELETE_CAR        |    +    |             |        |
+|  EDIT_CAR          |    +    |             |        |
+|  SHOW_CARS         |    +    |             |        |
+|  ADD_ROLE          |    +    |             |        |
+|  EDIT_ROLE         |    +    |             |        |
+|  DELETE_ROLE       |    +    |             |        |
+|  SHOW_ROLES        |    +    |             |        |
+</p>
 
 # Database schema
 
