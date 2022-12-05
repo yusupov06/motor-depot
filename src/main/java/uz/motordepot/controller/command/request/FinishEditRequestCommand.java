@@ -13,6 +13,7 @@ import uz.motordepot.utils.validator.request.AddRequestFormValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
+import java.util.Objects;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.REQUESTS_PAGE;
@@ -28,27 +29,38 @@ public class FinishEditRequestCommand implements Command {
         Router.PageChangeType type = FORWARD;
 
         HttpSession session = request.getSession();
-        Map<String, String[]> parameterMap = request.getParameterMap();
-        FormValidator formValidator = new AddRequestFormValidator();
-        Map<String, String> validationResult = formValidator.validate(parameterMap);
 
-        if (validationResult.isEmpty()) {
+        String parameter = request.getParameter(PARAMETER_CURRENT_ID);
 
-            String name = request.getParameter(PARAMETER_REQUEST_NAME);
-            String from = request.getParameter(PARAMETER_REQUEST_FROM);
-            String to = request.getParameter(PARAMETER_REQUEST_TO);
+        if (Objects.isNull(parameter) || parameter.length() == 0) {
+            request.setAttribute(EDITING_MESSAGE, "EDITING id can not be blank");
+        } else {
+
             UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
 
-            long requestId = Long.parseLong(request.getParameter(PARAMETER_CURRENT_ID));
-            boolean edit = requestService.edit(requestId, new RequestAddDTO(name, from, to, currentUser.getId()));
-            if (edit) {
+            Map<String, String[]> parameterMap = request.getParameterMap();
+            FormValidator formValidator = new AddRequestFormValidator();
+            Map<String, String> validationResult = formValidator.validate(parameterMap);
 
-                Commons.setRequestsPageByRoleToSession(session, 1);
-                session.removeAttribute(SESSION_ATTRIBUTE_EDITING);
-                return new Router(page, type);
+            if (validationResult.isEmpty()) {
+
+                String name = request.getParameter(PARAMETER_REQUEST_NAME);
+                String from = request.getParameter(PARAMETER_REQUEST_FROM);
+                String to = request.getParameter(PARAMETER_REQUEST_TO);
+                long requestId = Long.parseLong(parameter);
+                boolean edit = requestService.edit(requestId, new RequestAddDTO(name, from, to, currentUser.getId()));
+
+                if (edit) {
+                    session.removeAttribute(SESSION_ATTRIBUTE_EDITING);
+                    return new Router(page, type);
+                }
+
+            } else {
+                session.setAttribute(REQ_ATTRIBUTE_FORM_INVALID, validationResult);
             }
-        } else
-            session.setAttribute(REQ_ATTRIBUTE_FORM_INVALID, validationResult);
+        }
+
+        Commons.setRequestsPageByRoleToSession(session, 1);
         return new Router(page, type);
     }
 }

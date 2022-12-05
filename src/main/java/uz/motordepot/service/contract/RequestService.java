@@ -14,4 +14,6 @@ public interface RequestService extends CRUDService<RequestAddDTO, RequestDTO> {
     RequestStatus getStatusById(Long id);
 
     Page<RequestDTO> findByPageAndAdderId(int page, int pageCount, Long id);
+
+    RequestDTO getByIdAndAdder(Long id, Long addedBy);
 }

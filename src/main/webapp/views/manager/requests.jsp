@@ -26,6 +26,13 @@
                 <br>
                 <br>
                 <ol class="alert-danger">
+                    <c:if test="${requestScope.containsKey('invalidEditing')}">
+                        <div class="text-danger">
+                                ${sessionScope.invalidEditing}
+                        </div>
+                    </c:if>
+                </ol>
+                <ol class="alert-danger">
                     <c:if test="${sessionScope.invalid_form.name!=null}">
                         <div class="text-danger">
                                 ${sessionScope.invalid_form.name}

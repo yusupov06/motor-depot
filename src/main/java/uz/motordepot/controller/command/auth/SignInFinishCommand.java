@@ -30,7 +30,6 @@ public class SignInFinishCommand implements Command {
     public Router execute(HttpServletRequest request) throws CommandException {
 
         String page = SIGN_IN;
-        PageChangeType type = FORWARD;
         HttpSession session = request.getSession();
         Map<String, String[]> parameterMap = request.getParameterMap();
         FormValidator formValidator = new SignInValidator();
@@ -48,7 +47,6 @@ public class SignInFinishCommand implements Command {
                 UserDTO user = optionalUser.get();
                 if (user.getStatus().equals(UserStatus.ACTIVE.name())) {
                     page = HOME;
-                    type = REDIRECT;
                     session.setAttribute(SESSION_ATTRIBUTE_CURRENT_USER, user);
                 } else {
                     session.setAttribute(REQ_ATTRIBUTE_USER_BLOCKED, USER_BLOCKED_MESSAGE);
@@ -60,6 +58,6 @@ public class SignInFinishCommand implements Command {
             session.setAttribute(REQ_ATTRIBUTE_FORM_INVALID, validationResult);
         }
 
-        return new Router(page, type);
+        return new Router(page, FORWARD);
     }
 }

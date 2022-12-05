@@ -18,6 +18,7 @@ import java.util.Map;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.CARS_PAGE;
+import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class FinishEditCarCommand implements Command {
@@ -27,7 +28,7 @@ public class FinishEditCarCommand implements Command {
     @Override
     public Router execute(HttpServletRequest request) throws CommandException {
         String page = CARS_PAGE;
-        Router.PageChangeType type = REDIRECT;
+        Router.PageChangeType type = FORWARD;
 
         HttpSession session = request.getSession();
         Map<String, String[]> parameterMap = request.getParameterMap();

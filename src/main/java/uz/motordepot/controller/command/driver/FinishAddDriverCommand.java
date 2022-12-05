@@ -23,6 +23,7 @@ import java.util.Map;
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.DRIVERS_PAGE;
 import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
+import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class FinishAddDriverCommand implements Command {
 
@@ -73,7 +74,7 @@ public class FinishAddDriverCommand implements Command {
 
         Page<DriverDTO> byPage = driverService.findByPage(1, PAGE_COUNT);
         session.setAttribute(SESSION_ATTR_PAGE, byPage);
-        return new Router(DRIVERS_PAGE, FORWARD);
+        return new Router(DRIVERS_PAGE, REDIRECT);
 
     }
 }

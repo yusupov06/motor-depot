@@ -188,4 +188,20 @@ public class RequestDaoImpl implements RequestDao {
             throw new DaoException(e.getMessage());
         }
     }
+
+    @Override
+    public Optional<Request> findByIdAndAdder(Long id, Long addedBy) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_ID_AND_ADDER_QUERY);
+            statement.setLong(1, id);
+            statement.setLong(2, addedBy);
+            ResultSet resultSet = statement.executeQuery();
+            Request s = null;
+            if (resultSet.next())
+                 s = getFromResult(resultSet);
+            return Optional.ofNullable(s);
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        }
+    }
 }

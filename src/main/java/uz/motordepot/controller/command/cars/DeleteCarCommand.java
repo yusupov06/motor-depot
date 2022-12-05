@@ -16,6 +16,7 @@ import java.util.Objects;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.CARS_PAGE;
+import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class DeleteCarCommand implements Command {
@@ -48,6 +49,6 @@ public class DeleteCarCommand implements Command {
 
         Page<CarDTO> allByPage = carService.findByPage(1, PAGE_COUNT);
         session.setAttribute(SESSION_ATTR_PAGE, allByPage);
-        return new Router(CARS_PAGE, REDIRECT);
+        return new Router(CARS_PAGE, FORWARD);
     }
 }

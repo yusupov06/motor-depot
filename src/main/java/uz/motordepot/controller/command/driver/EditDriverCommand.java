@@ -20,6 +20,7 @@ import java.util.Objects;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.ADD_DRIVER_PAGE;
+import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class EditDriverCommand implements Command {
@@ -55,6 +56,6 @@ public class EditDriverCommand implements Command {
         }
 
         session.setAttribute(SESSION_ATTRIBUTE_CURRENT_PAGE, page);
-        return new Router(page, REDIRECT);
+        return new Router(page, FORWARD);
     }
 }

@@ -9,6 +9,14 @@ public enum RequestStatus {
 
     CREATED,
     APPROVED,
-    COMPLETED
+    COMPLETED;
 
+    public static RequestStatus define(String s) {
+        for (RequestStatus value : values()) {
+            if (value.name().equalsIgnoreCase(s)){
+                return value;
+            }
+        }
+        return null;
+    }
 }

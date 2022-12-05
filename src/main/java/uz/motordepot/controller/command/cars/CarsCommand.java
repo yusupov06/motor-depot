@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.CARS_PAGE;
+import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class CarsCommand implements Command {
@@ -26,6 +27,6 @@ public class CarsCommand implements Command {
         Page<CarDTO> carDTOPage = carService.findByPage(pagee, PAGE_COUNT);
         session.setAttribute(SESSION_ATTRIBUTE_CURRENT_PAGE, page);
         session.setAttribute(SESSION_ATTR_PAGE, carDTOPage);
-        return new Router(page, REDIRECT);
+        return new Router(page, FORWARD);
     }
 }

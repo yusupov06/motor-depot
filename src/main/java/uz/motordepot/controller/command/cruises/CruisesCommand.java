@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.CRUISES_PAGE;
+import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class CruisesCommand implements Command {
@@ -37,6 +38,6 @@ public class CruisesCommand implements Command {
 
         session.setAttribute(SESSION_ATTR_PAGE, byPage);
 
-        return new Router(page, REDIRECT);
+        return new Router(page, FORWARD);
     }
 }

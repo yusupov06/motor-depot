@@ -18,6 +18,7 @@ import uz.motordepot.service.contract.RequestService;
 import uz.motordepot.utils.Utils;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class RequestServiceImpl implements RequestService {
@@ -145,5 +146,13 @@ public class RequestServiceImpl implements RequestService {
                 .toList();
 
         return Utils.getPage(pageRequest.getPage(), totalPages, pageByStatus);
+    }
+
+    @Override
+    public RequestDTO getByIdAndAdder(Long id, Long addedBy) {
+        logger.info("FINDING STATUS BY ID AND ADDER");
+        Optional<Request> byIdAndAdder = dao.findByIdAndAdder(id, addedBy);
+        return byIdAndAdder.map(mapper::toDto).orElse(null);
+
     }
 }

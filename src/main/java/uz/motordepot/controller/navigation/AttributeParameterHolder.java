@@ -44,6 +44,7 @@ public final class AttributeParameterHolder {
      */
     public static final String PARAMETER_CRUISE_DRIVER_ID = "driverId";
     public static final String PARAMETER_CRUISE_REQUEST_ID = "requestId";
+    public static final String PARAMETER_CRUISE_STATUS = "status";
 
     /**
      * PAGINATION -> getting page
@@ -118,6 +119,7 @@ public final class AttributeParameterHolder {
     public static final String INVALID_PHONE_NUMBER_MESSAGE = "Phone number is not valid";
     public static final String INVALID_PASSWORD_MESSAGE = "Password is not valid";
     public static final String DELETING_MESSAGE = "invalidDeleting";
+    public static final String EDITING_MESSAGE = "invalidEditing";
     public static final String REQ_ATTRIBUTE_USER_BLOCKED = "user_blocked";
     public static final String USER_BLOCKED_MESSAGE = "user is blocked";
     public static final String INVALID_CRUISE_REQUEST_ID = " Request id can not be blank";

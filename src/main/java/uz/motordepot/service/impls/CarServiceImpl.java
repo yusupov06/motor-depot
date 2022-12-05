@@ -53,6 +53,7 @@ public class CarServiceImpl implements CarService {
                 .orElseThrow(
                         () -> ServiceException
                                 .throwExc("Car not found", 404));
+
         car.setCarModel(CarModel.define(carAddDto.getCarModel()));
         car.setCarNumber(carAddDto.getCarNumber());
         return carDao.save(car);

@@ -4,6 +4,7 @@ import uz.motordepot.entity.Request;
 import uz.motordepot.entity.enums.RequestStatus;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RequestDao extends Dao<Request, Long> {
 
@@ -18,6 +19,7 @@ public interface RequestDao extends Dao<Request, Long> {
     String INSERT_QUERY = "INSERT INTO request(name, from_, to_, status, added_by) VALUES (?,?,?,?,?);";
     String DELETE_BY_ID_QUERY = "delete FROM request WHERE id = ?;";
     String FIND_BY_ID_QUERY = "SELECT * FROM request where id = ?;";
+    String FIND_BY_ID_AND_ADDER_QUERY = "SELECT * FROM request where id = ? and added_by = ?;";
     String FIND_ALL_QUERY = "SELECT * from request ;";
     String FIND_STATUS_BY_ID = "SELECT status from request where id = ?;";
     String FIND_TOTAL_COUNT_QUERY = "SELECT count(id) as total from request;";
@@ -47,4 +49,6 @@ public interface RequestDao extends Dao<Request, Long> {
     int findTotalPagesByAdderId(int size, Long adderId);
 
     List<Request> findPageByAdderId(int page, int pageCount, Long adderId);
+
+    Optional<Request> findByIdAndAdder(Long id, Long addedBy);
 }

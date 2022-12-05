@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
 import static uz.motordepot.controller.navigation.PageNavigation.DRIVERS_PAGE;
+import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 import static uz.motordepot.controller.router.Router.PageChangeType.REDIRECT;
 
 public class DeleteDriverCommand implements Command {
@@ -45,6 +46,6 @@ public class DeleteDriverCommand implements Command {
         driverService.findByPage(0, PAGE_COUNT);
         session.setAttribute(SESSION_ATTR_PAGE, null);
         session.setAttribute(SESSION_ATTRIBUTE_CURRENT_PAGE, page);
-        return new Router(page, REDIRECT);
+        return new Router(page, FORWARD);
     }
 }

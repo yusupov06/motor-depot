@@ -1,8 +1,8 @@
 <%@ page import="uz.motordepot.controller.command.CommandType" %>
-<%@ page import="uz.motordepot.controller.navigation.AttributeParameterHolder" %>
 <%@ page import="uz.motordepot.entity.enums.CruiseStatus" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,6 @@
 
 <jsp:include page="../../fragments/navbar.jsp"></jsp:include>
 
-<img class="home-img" src="../../static/images/cars.webp" alt=" Cruises ">
 
 <c:if test="${sessionScope.current_user.permissions.contains('ADD_CRUISE')}">
 
@@ -36,6 +35,53 @@
 <c:choose>
 
     <c:when test="${sessionScope.current_user.permissions.contains('SHOW_CRUISES')}">
+
+
+        <%--invalid form--%>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <br>
+                    <br>
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.currentId!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.currentId}
+                            </div>
+                        </c:if>
+                    </ol>
+
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.status!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.status}
+                            </div>
+                        </c:if>
+                    </ol>
+
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.changedStatus!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.changedStatus}
+                            </div>
+                        </c:if>
+                    </ol>
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.canChange!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.canChange}
+                            </div>
+                        </c:if>
+                    </ol>
+
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+
+
         <div class="registerDiv" id="registerDiv">
             <div id="home" class="main-home">
                 <div>
