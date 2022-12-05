@@ -44,6 +44,11 @@
                     </div>
 
                     <div class="form-item">
+                        <label for="to"></label><input type="text" class="form-control" id="characteristics" name="characteristics"
+                                                       placeholder=" characteristics ">
+                    </div>
+
+                    <div class="form-item">
                         <button type="submit" class="btn btn-block btn-primary">Add</button>
                     </div>
 

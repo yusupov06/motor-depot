@@ -10,12 +10,13 @@ public interface CarDao extends Dao<Car, Long> {
     String CAR_MODEL = "car_model";
     String CAR_NUMBER = "car_number";
     String CONDITION = "condition";
+    String CHARACTERISTICS = "characteristics";
     String ADDED_AT = "added_at";
     String ADDED_BY = "added_by";
 
-    String UPDATE_QUERY = "update car set car_model = ?, car_number = ?, condition = ? where id = ?;";
+    String UPDATE_QUERY = "update car set car_model = ?, car_number = ?, condition = ?, characteristics = ? where id = ?;";
     String UPDATE_TO_CONDITION_BY_ID = "update car set condition = ? where id = ?;";
-    String INSERT_QUERY = "INSERT INTO CAR(car_model, car_number, condition, added_by) VALUES (?,?,?,?);";
+    String INSERT_QUERY = "INSERT INTO CAR(car_model, car_number, characteristics, condition, added_by) VALUES (?,?,?,?,?);";
     String DELETE_QUERY = "DELETE FROM car WHERE id = ? and condition = 'NOT_ACTIVE';";
     String FIND_BY_ID_QUERY = "SELECT * FROM car WHERE id = ?;";
     String FIND_ALL_QUERY = "SELECT * FROM car order by id desc;";

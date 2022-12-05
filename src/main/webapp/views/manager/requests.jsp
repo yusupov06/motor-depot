@@ -102,6 +102,13 @@
             </div>
 
             <div class="form-item">
+                <label for="to"></label><input type="text" class="form-control" id="characteristics"
+                                               name="${AttributeParameterHolder.PARAMETER_REQUEST_CHARAC}"
+                                               value="${sessionScope.editing.characteristics}"
+                                               placeholder=" Characteristics ">
+            </div>
+
+            <div class="form-item">
                 <button type="submit" class="btn btn-block btn-primary">Edit</button>
             </div>
             <div class="form-item">
@@ -153,7 +160,7 @@
                                 <th>Request</th>
                                 <th>From</th>
                                 <th>To</th>
-                                    <%--                                <th>Start time</th>--%>
+                                <th>Characteristics</th>
                                 <th>Status</th>
                                 <th>Added at</th>
                                 <th>Added by</th>
@@ -169,7 +176,7 @@
                                     <td><span> ${request.name} </span></td>
                                     <td><span> ${request.from} </span></td>
                                     <td><span> ${request.to} </span></td>
-                                        <%--                                                                            <td><span> ${request.startTime} </span></td>--%>
+                                    <td><span> ${request.characteristics} </span></td>
                                     <td><span> ${request.status} </span></td>
                                     <td><span> ${request.addedAt} </span></td>
                                     <td><span> ${request.addedBy} </span></td>

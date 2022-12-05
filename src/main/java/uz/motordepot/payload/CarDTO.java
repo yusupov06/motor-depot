@@ -17,6 +17,7 @@ public class CarDTO {
     private String carModel;
     private String carNumber;
     private String condition;
+    private String characteristics;
     private String addedBy;
     private LocalDateTime addedAt;
 

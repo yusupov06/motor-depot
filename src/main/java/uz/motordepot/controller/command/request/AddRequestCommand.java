@@ -37,8 +37,9 @@ public class AddRequestCommand implements Command {
             String name = request.getParameter(PARAMETER_REQUEST_NAME);
             String from = request.getParameter(PARAMETER_REQUEST_FROM);
             String to = request.getParameter(PARAMETER_REQUEST_TO);
+            String charac = request.getParameter(PARAMETER_REQUEST_CHARAC);
             UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
-            boolean add = requestService.add(new RequestAddDTO(name, from, to, currentUser.getId()));
+            boolean add = requestService.add(new RequestAddDTO(name, from, to, charac, currentUser.getId()));
             if (add) {
 
                 Commons.setRequestsPageByRoleToSession(session, 1);

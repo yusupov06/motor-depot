@@ -69,6 +69,14 @@
                        value="${sessionScope.editing.carNumber}"
                        placeholder=" car number ">
             </div>
+            <div class="form-item">
+                <label for="characteristics"></label>
+                <input type="text" class="form-control"
+                       id="characteristics"
+                       name="${AttributeParameterHolder.PARAMETER_CAR_CHARAC}"
+                       value="${sessionScope.editing.characteristics}"
+                       placeholder=" car number ">
+            </div>
 
 
             <div class="form-item">
@@ -93,17 +101,17 @@
                 <br>
                 <br>
                 <ol class="alert-danger">
-                    <c:if test="${invalid_form.carModel!=null}">
+                    <c:if test="${sessionScope.invalid_form.carModel!=null}">
                         <div class="text-danger">
-                                ${invalid_form.carModel}
+                                ${sessionScope.invalid_form.carModel}
                         </div>
                     </c:if>
                 </ol>
 
                 <ol class="alert-danger">
-                    <c:if test="${invalid_form.carNumber!=null}">
+                    <c:if test="${sessionScope.invalid_form.carNumber!=null}">
                         <div class="text-danger">
-                                ${invalid_form.carNumber}
+                                ${sessionScope.invalid_form.carNumber}
                         </div>
                     </c:if>
                 </ol>
@@ -146,6 +154,7 @@
                                 <td class="column-row">Car Model</td>
                                 <td class="column-row">Car number</td>
                                 <td class="column-row">Condition</td>
+                                <td class="column-row">Characteristics</td>
                                 <td class="column-row">Added at</td>
                                 <td class="column-row">Added by</td>
                                 <td colspan="2">Action</td>
@@ -160,6 +169,7 @@
                                     <td class="column-1"><span> ${car.carModel} </span></td>
                                     <td class="column-1"><span> ${car.carNumber} </span></td>
                                     <td class="column-1"><span> ${car.condition} </span></td>
+                                    <td class="column-1"><span> ${car.characteristics} </span></td>
                                     <td class="column-1"><span> ${car.addedAt} </span></td>
                                     <td class="column-1"><span> ${car.addedBy} </span></td>
 

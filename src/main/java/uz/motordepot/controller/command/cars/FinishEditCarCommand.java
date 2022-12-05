@@ -39,9 +39,10 @@ public class FinishEditCarCommand implements Command {
 
             String carModel = request.getParameter(PARAMETER_CAR_MODEL);
             String carNumber = request.getParameter(PARAMETER_CAR_NUMBER);
+            String characteristics = request.getParameter(PARAMETER_CAR_CHARAC);
             UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
             long carId = Long.parseLong(request.getParameter(PARAMETER_CURRENT_ID));
-            boolean edit = carService.edit(carId, new CarAddDto(carModel, carNumber, currentUser.getId()));
+            boolean edit = carService.edit(carId, new CarAddDto(carModel, carNumber,characteristics, currentUser.getId()));
             if (edit) {
                 Page<CarDTO> allByPage = carService.findByPage(1, PAGE_COUNT);
                 session.setAttribute(SESSION_ATTR_PAGE, allByPage);

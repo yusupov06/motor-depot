@@ -23,7 +23,11 @@
                         </li>
                         <li>
                                 ${car.car.carNumber}
-                        </li></span></td>
+                        </li>
+                        <li>
+                                ${car.car.characteristics}
+                        </li>
+                    </span></td>
                     <td class="column-1"><span>
                         <li>
                                 ${car.user.firstName}

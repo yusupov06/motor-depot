@@ -12,11 +12,12 @@ public interface RequestDao extends Dao<Request, Long> {
     String NAME = "name";
     String FROM = "from_";
     String TO = "to_";
+    String CHARACTERISTICS = "characteristics";
     String ADDED_AT = "added_at";
     String ADDED_BY = "added_by";
     String STATUS = "status";
-    String UPDATE_QUERY = "update request set name = ?, from_ = ?, to_ = ?, status = ? where id = ?;";
-    String INSERT_QUERY = "INSERT INTO request(name, from_, to_, status, added_by) VALUES (?,?,?,?,?);";
+    String UPDATE_QUERY = "update request set name = ?, from_ = ?, to_ = ?, status = ?, characteristics = ? where id = ?;";
+    String INSERT_QUERY = "INSERT INTO request(name, from_, to_, status, characteristics, added_by) VALUES (?,?,?,?,?,?);";
     String DELETE_BY_ID_QUERY = "delete FROM request WHERE id = ?;";
     String FIND_BY_ID_QUERY = "SELECT * FROM request where id = ?;";
     String FIND_BY_ID_AND_ADDER_QUERY = "SELECT * FROM request where id = ? and added_by = ?;";

@@ -13,6 +13,8 @@ public class CarAddDto {
 
     private String carModel;
     private String carNumber;
+    private String characteristics;
     private long addedBy;
+
 
 }

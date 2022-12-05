@@ -18,6 +18,6 @@ public class Request extends AbsLongEntity {
     private String from;
     private String to;
     private RequestStatus status;
-//    private LocalDateTime startTime;
+    private String characteristics;
 
 }

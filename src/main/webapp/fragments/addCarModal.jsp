@@ -43,6 +43,13 @@
                                placeholder=" car number ">
                     </div>
 
+                    <div class="form-item">
+                        <label for="characteristics"></label>
+                        <input type="text" class="form-control"
+                               id="characteristics" name="${AttributeParameterHolder.PARAMETER_CAR_CHARAC}"
+                               placeholder=" car characteristics ">
+                    </div>
+
 
                     <div class="form-item">
                         <button type="submit" class="btn btn-block btn-primary">Add</button>

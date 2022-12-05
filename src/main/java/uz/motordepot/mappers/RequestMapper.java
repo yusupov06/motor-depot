@@ -16,6 +16,7 @@ public class RequestMapper implements BaseMapper<
         return new RequestDTO(request.getId(), request.getName(),
                 request.getFrom(), request.getTo(),
                 request.getAddedAt(),
+                request.getCharacteristics(),
                 request.getStatus(),
                 request.getAddedBy().getFirstName());
     }

@@ -41,11 +41,11 @@ public class RequestServiceImpl implements RequestService {
         if (userDao.existsById(dto.getAddedBy(), UserDao.EXISTS_BY_ID)) {
             user = new User();
             user.setId(dto.getAddedBy());
-        } else{
+        } else {
             logger.error("ADDER NOT FOUND WITH ID {}", dto.getAddedBy());
             throw ServiceException.throwExc("Adder not found with id " + dto.getAddedBy(), 404);
         }
-        Request request = new Request(dto.getName(), dto.getFrom(), dto.getTo(), RequestStatus.CREATED);
+        Request request = new Request(dto.getName(), dto.getFrom(), dto.getTo(), RequestStatus.CREATED, dto.getCharacteristics());
         request.setAddedBy(user);
         return request;
     }
@@ -60,6 +60,7 @@ public class RequestServiceImpl implements RequestService {
         request.setName(dto.getName());
         request.setFrom(dto.getFrom());
         request.setTo(dto.getTo());
+        request.setCharacteristics(dto.getCharacteristics());
         return dao.save(request);
     }
 
@@ -137,7 +138,7 @@ public class RequestServiceImpl implements RequestService {
 
         PageRequest pageRequest = new PageRequest(page, pageCount);
 
-        int totalPages = dao.findTotalPagesByAdderId(pageRequest.getSize(),adderId);
+        int totalPages = dao.findTotalPagesByAdderId(pageRequest.getSize(), adderId);
 
         List<RequestDTO> pageByStatus = dao
                 .findPageByAdderId(page, pageCount, adderId)

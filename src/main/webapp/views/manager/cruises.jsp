@@ -105,6 +105,7 @@
                                         <ol> Car </ol>
                                         <li>${cruise.driver.car.carModel}</li>
                                         <li>${cruise.driver.car.carNumber}</li>
+                                        <li>${cruise.driver.car.characteristics}</li>
                                         <br>
                                         <ol> Driver </ol>
                                         <li>${cruise.driver.user.firstName}</li>
@@ -115,6 +116,7 @@
                                         <li>${cruise.request.name}</li>
                                         <li>From: ${cruise.request.from}</li>
                                         <li>To: ${cruise.request.to}</li></span>
+                                        <li>Characteristics: ${cruise.request.characteristics}</li></span>
                                     </td>
 
                                     <td class="column-1"><span>

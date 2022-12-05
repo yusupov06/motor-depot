@@ -20,6 +20,7 @@ public class RequestAddDTO {
     private String name;
     private String from;
     private String to;
+    private String characteristics;
     private long addedBy;
 
 }

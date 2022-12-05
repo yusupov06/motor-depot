@@ -11,8 +11,8 @@
 
 # Description
 <div>
-Motor depot. The Dispatcher distributes Requests for Flights between Drivers, each of whom has his own Car assigned to them.
-A Car that is in good condition and whose characteristics correspond to the Application can be assigned to the Flight.
+Motor depot. The Dispatcher distributes Requests for Cruises between Drivers, each of whom has his own Car assigned to them.
+A Car that is in good condition and whose characteristics correspond to the Application can be assigned to the Cruise.
 The driver makes a note about the performance of the Race and the condition of the Car.
 </div>
 

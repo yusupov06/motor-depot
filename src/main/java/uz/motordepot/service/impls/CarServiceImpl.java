@@ -26,21 +26,18 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public boolean add(CarAddDto carAddDto) {
-        Car car = fromCDto(carAddDto);
+        Car car = fromAddDto(carAddDto);
         carDao.save(car);
         return true;
     }
 
-    public Car fromCDto(CarAddDto carAddDto) {
+    public Car fromAddDto(CarAddDto carAddDto) {
         if (userDao.existsById(carAddDto.getAddedBy(), UserDao.EXISTS_BY_ID)) {
-            Car build = Car.builder()
-                    .carNumber(carAddDto.getCarNumber())
-                    .carModel(CarModel.define(carAddDto.getCarModel()))
-                    .build();
+            Car car = mapper.fromAddDto(carAddDto);
             User user = new User();
             user.setId(carAddDto.getAddedBy());
-            build.setAddedBy(user);
-            return build;
+            car.setAddedBy(user);
+            return car;
         } else
             throw ServiceException.throwExc("ADDER NOT FOUND WITH ID " + carAddDto.getAddedBy(), 404);
     }

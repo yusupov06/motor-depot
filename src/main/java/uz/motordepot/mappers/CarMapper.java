@@ -3,6 +3,7 @@ package uz.motordepot.mappers;
 import uz.motordepot.entity.Car;
 import uz.motordepot.entity.enums.CarCondition;
 import uz.motordepot.entity.enums.CarModel;
+import uz.motordepot.payload.CarAddDto;
 import uz.motordepot.payload.CarDTO;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class CarMapper implements BaseMapper<
                 entity.getCarModel().name(),
                 entity.getCarNumber(),
                 entity.getCondition().name(),
+                entity.getCharacteristics(),
                 entity.getAddedBy().getFirstName(),
                 entity.getAddedAt());
     }
@@ -44,5 +46,13 @@ public class CarMapper implements BaseMapper<
                 .stream()
                 .map(this::toDto)
                 .toList();
+    }
+
+    public Car fromAddDto(CarAddDto carAddDto) {
+        Car car = new Car();
+        car.setCarModel(CarModel.define(carAddDto.getCarModel()));
+        car.setCarNumber(carAddDto.getCarNumber());
+        car.setCharacteristics(carAddDto.getCharacteristics());
+        return car;
     }
 }

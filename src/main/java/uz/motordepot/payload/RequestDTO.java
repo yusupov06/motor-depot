@@ -23,6 +23,7 @@ public class RequestDTO implements Serializable {
     private String from;
     private String to;
     private LocalDateTime addedAt;
+    private String characteristics;
     private RequestStatus status;
     private String addedBy;
 

@@ -66,6 +66,7 @@ public final class AttributeParameterHolder {
     public static final String PARAMETER_REQUEST_NAME = "name";
     public static final String PARAMETER_REQUEST_FROM = "from";
     public static final String PARAMETER_REQUEST_TO = "to";
+    public static final String PARAMETER_REQUEST_CHARAC = "characteristics";
     public static final String INVALID_REQUEST_NAME = "request name can not be blank";
     public static final String INVALID_REQUEST_FROM = "request from name can not be blank";
     public static final String INVALID_REQUEST_TO = "request to name can not be blank";
@@ -75,6 +76,7 @@ public final class AttributeParameterHolder {
      */
     public static final String PARAMETER_CAR_MODEL = "carModel";
     public static final String PARAMETER_CAR_NUMBER = "carNumber";
+    public static final String PARAMETER_CAR_CHARAC = "characteristics";
     public static final String INVALID_CAR_NUMBER = "invalid car number";
     public static final String INVALID_CAR_MODEL = "invalid car model";
 

@@ -11,6 +11,7 @@
             <tr class="column">
                 <td class="column-row">Model</td>
                 <td class="column-row">Number</td>
+                <td class="column-row">Characteristics</td>
             </tr>
             </thead>
 
@@ -19,6 +20,7 @@
                 <tr class="trHover">
                     <td class="column-1"><span> ${car.carModel} </span></td>
                     <td class="column-1"><span> ${car.carNumber} </span></td>
+                    <td class="column-1"><span> ${car.charcateristics} </span></td>
                     <td>
                         <input class="form-check-input" type="radio"
                                name="${AttributeParameterHolder.PARAMETER_CAR_ID}"

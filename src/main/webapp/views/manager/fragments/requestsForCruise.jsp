@@ -11,6 +11,7 @@
                 <td class="column-row">Name</td>
                 <td class="column-row">From</td>
                 <td class="column-row">To</td>
+                <td class="column-row">Characteristics</td>
                 <td class="column-row">Choose</td>
             </tr>
             </thead>
@@ -22,6 +23,7 @@
                     <td class="column-1"><span> ${request.name} </span></td>
                     <td class="column-1"><span> ${request.from} </span></td>
                     <td class="column-1"><span> ${request.to} </span></td>
+                    <td class="column-1"><span> ${request.characteristics} </span></td>
                     <td>
                         <c:choose>
                             <c:when test="${sessionScope.editing!=null && sessionScope.editing.request.id == request.id}">

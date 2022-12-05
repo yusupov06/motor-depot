@@ -31,15 +31,16 @@ public class RequestDaoImpl implements RequestDao {
             PreparedStatement statement;
             if (request.getId() != null) {
                 statement = connection.prepareStatement(UPDATE_QUERY);
-                statement.setLong(5, request.getId());
+                statement.setLong(6, request.getId());
             } else {
                 statement = connection.prepareStatement(INSERT_QUERY);
-                statement.setLong(5, request.getAddedBy().getId());
+                statement.setLong(6, request.getAddedBy().getId());
             }
             statement.setString(1, request.getName());
             statement.setString(2, request.getFrom());
             statement.setString(3, request.getTo());
             statement.setString(4, request.getStatus().name());
+            statement.setString(5, request.getCharacteristics());
             statement.execute();
             return true;
         } catch (SQLException e) {
@@ -53,6 +54,7 @@ public class RequestDaoImpl implements RequestDao {
         request.setName(resultSet.getString(NAME));
         request.setFrom(resultSet.getString(FROM));
         request.setTo(resultSet.getString(TO));
+        request.setCharacteristics(resultSet.getString(CHARACTERISTICS));
         LocalDateTime dateTime = resultSet.getTimestamp(ADDED_AT).toLocalDateTime();
         request.setAddedAt(dateTime);
         long addedBy = resultSet.getLong(ADDED_BY);
@@ -198,7 +200,7 @@ public class RequestDaoImpl implements RequestDao {
             ResultSet resultSet = statement.executeQuery();
             Request s = null;
             if (resultSet.next())
-                 s = getFromResult(resultSet);
+                s = getFromResult(resultSet);
             return Optional.ofNullable(s);
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());

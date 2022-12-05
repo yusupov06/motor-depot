@@ -30,16 +30,17 @@ public class CarDaoImpl implements CarDao {
             PreparedStatement statement;
             if (car.getId() != null) {
                 statement = connection.prepareStatement(UPDATE_QUERY);
-                statement.setLong(4, car.getId());
-                statement.setString(3, car.getCondition().name());
+                statement.setLong(5, car.getId());
+                statement.setString(4, car.getCondition().name());
             } else {
                 statement = connection.prepareStatement(INSERT_QUERY);
-                statement.setString(3, CarCondition.NOT_ACTIVE.name());
-                statement.setLong(4, car.getAddedBy().getId());
+                statement.setString(4, CarCondition.NOT_ACTIVE.name());
+                statement.setLong(5, car.getAddedBy().getId());
             }
 
             statement.setString(1, car.getCarModel().name());
             statement.setString(2, car.getCarNumber());
+            statement.setString(3, car.getCharacteristics());
             statement.execute();
             return true;
         } catch (SQLException e) {
@@ -53,6 +54,7 @@ public class CarDaoImpl implements CarDao {
         car.setCarModel(CarModel.valueOf(set.getString(CAR_MODEL)));
         car.setCarNumber(set.getString(CAR_NUMBER));
         car.setCondition(CarCondition.define(set.getString(CONDITION)));
+        car.setCharacteristics(set.getString(CHARACTERISTICS));
         LocalDateTime dateTime = set.getTimestamp(ADDED_AT).toLocalDateTime();
         long addedBy = set.getLong(ADDED_BY);
         car.setAddedAt(dateTime);

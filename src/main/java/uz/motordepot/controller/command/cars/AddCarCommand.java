@@ -39,8 +39,9 @@ public class AddCarCommand implements Command {
 
             String carModel = request.getParameter(PARAMETER_CAR_MODEL);
             String carNumber = request.getParameter(PARAMETER_CAR_NUMBER);
+            String characteristics = request.getParameter(PARAMETER_CAR_CHARAC);
             UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
-            boolean add = carService.add(new CarAddDto(carModel, carNumber, currentUser.getId()));
+            boolean add = carService.add(new CarAddDto(carModel, carNumber, characteristics, currentUser.getId()));
             if (add) {
                 Page<CarDTO> allByPage = carService.findByPage(1, PAGE_COUNT);
                 session.setAttribute(SESSION_ATTR_PAGE, allByPage);
