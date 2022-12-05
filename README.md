@@ -21,7 +21,7 @@ The driver makes a note about the performance of the Race and the condition of t
 <h3> Java EE / PostgreSQL / HTML5 / CSS3 / Bootstrap 5 / JavaScript / Command design pattern </h3>
 
 # Functional roles
-<p>
+
 The platform supports the following roles and their corresponded functionality.
 
 |  Permission        | MANAGER | DISPATCHER  | DRIVER |
@@ -48,11 +48,11 @@ The platform supports the following roles and their corresponded functionality.
 |  EDIT_ROLE         |    +    |             |        |
 |  DELETE_ROLE       |    +    |             |        |
 |  SHOW_ROLES        |    +    |             |        |
-</p>
 
 # Database schema
 
 PostgreSQL database is used to store data.
+</p>
 
 <p align="center">
   <kbd> <img alt="Database" src="src/main/webapp/static/images/databaseER.png" style="border-radius:10px"\></kbd> 
