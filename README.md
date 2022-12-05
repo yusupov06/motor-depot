@@ -3,7 +3,7 @@
 # Description
 
 <p align="center">
-  <img alt="Survey" src="https://apex4-production.s3.eu-west-1.amazonaws.com/tenant_f90c9e25-33aa-465e-9d8b-a517bcb67a8d/media/uploads/site-moved/moving-site-illustration.svg"\ width="100" height="200">
+  <img alt="Survey" src="https://apex4-production.s3.eu-west-1.amazonaws.com/tenant_f90c9e25-33aa-465e-9d8b-a517bcb67a8d/media/uploads/site-moved/moving-site-illustration.svg"\ width="500" height="500">
 </p>
 
 
