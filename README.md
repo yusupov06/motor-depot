@@ -74,18 +74,13 @@ PostgreSQL database is used to store data.
 ## Usage
 
 <p align="center">
-  <kbd> <img alt="Sign in" src="/src/main/resources/images/login.webm" style="border-radius:10px"\></kbd> 
+  <kbd> <img alt="Sign in" src="/src/main/resources/images/login.gif" style="border-radius:10px"\></kbd> 
 </p>
 <p align="center">Sign in</p>
 <br>
 
 <p align="center">
-  <kbd> <img alt="Survey attempt" src="https://user-images.githubusercontent.com/64004682/180663470-5ce92f47-aba5-45bd-a19c-eb308b620a42.gif" width="100^" style="border-radius:10px"\></kbd> 
+  <kbd> <img alt="Add Request" src="src/main/resources/images/addRequest.gif" width="100^" style="border-radius:10px"\></kbd> 
 </p>
-<p align="center">Survey attempt</p>
+<p align="center">Adding Request</p>
 <br>
-
-<p align="center">
-  <kbd> <img alt="View survey result and theme CRUD" src="https://user-images.githubusercontent.com/64004682/180663476-4ab570e0-40ae-4e96-8131-12013bb17fd5.gif" width="100%" style="border-radius:10px"\></kbd> 
-</p>
-<p align="center">View survey result and work with themes</p>
