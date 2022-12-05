@@ -58,7 +58,7 @@ PostgreSQL database is used to store data.
 <p align="center">
   <kbd> <img alt="Database" src="src/main/resources/images/databaseER.png" style="border-radius:10px"\></kbd> 
 </p>
-<p align="center">Database schema</p>[motor_depot.sql](..%2F..%2Fdatabase%2Fmotor_depot.sql)
+<p align="center">Database schema</p>
 
 ## Installation
 
