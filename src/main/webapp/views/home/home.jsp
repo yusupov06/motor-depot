@@ -28,7 +28,7 @@
                     <h5> ${sessionScope.current_user.lastName} </h5>
                     <h5> ${sessionScope.current_user.phoneNumber} </h5>
                     <h5> ${sessionScope.current_user.role} </h5>
-                    <h5> ${sessionScope.current_user.permissions} </h5>
+<%--                    <h5> ${sessionScope.current_user.permissions} </h5>--%>
                 </div>
             </div>
         </div>

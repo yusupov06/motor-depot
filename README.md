@@ -56,28 +56,27 @@ PostgreSQL database is used to store data.
 
 
 <p align="center">
-  <kbd> <img alt="Database" src="src/main/webapp/static/images/databaseER.png" style="border-radius:10px"\></kbd> 
+  <kbd> <img alt="Database" src="src/main/resources/images/databaseER.png" style="border-radius:10px"\></kbd> 
 </p>
-<p align="center">Database schema</p>
+<p align="center">Database schema</p>[motor_depot.sql](..%2F..%2Fdatabase%2Fmotor_depot.sql)
 
 ## Installation
 
 1. Clone the project.
-2. Create a new MySQL database using database.sql from the data folder.
-3. Change the app.properties file, located in the resources/properties/ folder, based on your database configurations.
-4. Fill up any valid email service's user and password in the mail.properties file, located in the resources/properties/
-   folder, for password change functionality.
+2. Create a new PostgreSQL database. 
+3. Create tables using init-ddl.sql and create triggers using init-triggers.sql from the resources/data folder.
+4. Change the application.properties file, located in the resources' folder, based on your database configurations.
 5. Build the project using maven.
-6. Add new Tomcat 9.0.62 configuration to the project.
+6. Add new Tomcat 8.5.81 configuration to the project. You can download from https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.81/bin/
 7. Run Tomcat and open http://localhost:8080/ on the browser.
-8. Log in as admin, change password and create new users. Admin default account is admin@admin.com, password - 12345678.
+8. Log in as manager. Admin default account is phoneNumber +998931668648, password - 123.
 
 ## Usage
 
 <p align="center">
-  <kbd> <img alt="Edit survey" src="https://user-images.githubusercontent.com/64004682/180663466-59c3809d-6870-4e19-9d1c-a131d13dc482.gif" width="100%" style="border-radius:10px"\></kbd> 
+  <kbd> <img alt="Sign in" src="/src/main/resources/images/login.webm" style="border-radius:10px"\></kbd> 
 </p>
-<p align="center">Sign in and edit survey</p>
+<p align="center">Sign in</p>
 <br>
 
 <p align="center">
