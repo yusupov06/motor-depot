@@ -1,14 +1,14 @@
 # motor-depot
 
-# Description
-
 <p align="center">
-  <img alt="Survey" src="https://apex4-production.s3.eu-west-1.amazonaws.com/tenant_f90c9e25-33aa-465e-9d8b-a517bcb67a8d/media/uploads/site-moved/moving-site-illustration.svg"\ width="500" height="500">
+  <img alt="Survey" src="src/main/webapp/static/images/home.svg">
 </p>
 
 
 
 <h1>The platform supports only English language.</h1>
+
+# Description
 
 <div>
 Motor depot. The Dispatcher distributes Requests for Flights between Drivers, each of whom has his own Car assigned to them.
@@ -16,24 +16,45 @@ A Car that is in good condition and whose characteristics correspond to the Appl
 The driver makes a note about the performance of the Race and the condition of the Car.
 </div>
 
-Project stack
+# Project stack
 
-Java EE / MySQL / HTML5 / CSS3 / Bootstrap 4 / JavaScript
+<h3> Java EE / PostgreSQL / HTML5 / CSS3 / Bootstrap 5 / JavaScript / Command design pattern </h3>
 
-## Functional roles
+# Functional roles
 
 The platform supports the following roles and their corresponded functionality.
 
-| | MANGER | DISPATCHER | DRIVER |
-|                    :- |  :-:   |  :-:        |  :-:   |
+| Permission | MANAGER | DISPATCHER | DRIVER |
+| SIGN_IN | + | + | + |
+| LOG_OUT | + | + | + |
+| ADD_REQUEST | + | + | |
+| EDIT_REQUEST | + | + | |
+| DELETE_REQUEST | + | + | |
+| SHOW_REQUESTS | + | + | |
+| ADD_CRUISE | + | | |
+| EDIT_CRUISE | + | | |
+| DELETE_CRUISE | + | + | |
+| SHOW_CRUISES | + | | + |
+| EDIT_CRUISE_STATUS| + | | + |
+| ADD_DRIVER | + | | |
+| DELETE_DRIVER | + | | |
+| EDIT_DRIVER | + | | |
+| SHOW_DRIVERS | + | | |
+| ADD_CAR | + | | |
+| DELETE_CAR | + | | |
+| EDIT_CAR | + | | |
+| SHOW_CARS | + | | |
+| ADD_ROLE | + | | |
+| EDIT_ROLE | + | | |
+| DELETE_ROLE | + | | |
+| SHOW_ROLES | + | | |
 
-## Database schema
+# Database schema
 
-MySQL database is used to store data.
+PostgreSQL database is used to store data.
 
-</p>
 <p align="center">
-  <kbd> <img alt="Database" src="https://user-images.githubusercontent.com/64004682/180768897-9c5fcb45-e647-4ffe-9b71-04e9ef402240.png" width="100%" style="border-radius:10px"\></kbd> 
+  <kbd> <img alt="Database" src="src/main/webapp/static/images/databaseER.png" style="border-radius:10px"\></kbd> 
 </p>
 <p align="center">Database schema</p>
 
