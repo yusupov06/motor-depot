@@ -25,6 +25,7 @@ The driver makes a note about the performance of the Race and the condition of t
 The platform supports the following roles and their corresponded functionality.
 
 |  Permission        | MANAGER | DISPATCHER  | DRIVER |
+|      :-            |   :-:   |     :-:     |   :-:  |
 |  SIGN_IN           |    +    |      +      |    +   |
 |  LOG_OUT           |    +    |      +      |    +   |
 |  ADD_REQUEST       |    +    |      +      |        |
@@ -52,7 +53,7 @@ The platform supports the following roles and their corresponded functionality.
 # Database schema
 
 PostgreSQL database is used to store data.
-</p>
+
 
 <p align="center">
   <kbd> <img alt="Database" src="src/main/webapp/static/images/databaseER.png" style="border-radius:10px"\></kbd> 
