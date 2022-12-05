@@ -17,6 +17,36 @@
 <c:choose>
 
     <c:when test="${sessionScope.current_user.permissions.contains('ADD_CRUISE') && sessionScope.editing == null}">
+
+        <%--invalid form--%>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <br>
+                    <br>
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.requestId!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.requestId}
+                            </div>
+                        </c:if>
+                    </ol>
+
+                    <ol class="alert-danger">
+                        <c:if test="${sessionScope.invalid_form.driverId!=null}">
+                            <div class="text-danger">
+                                    ${sessionScope.invalid_form.driverId}
+                            </div>
+                        </c:if>
+                    </ol>
+
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+
         <div class="registerDiv" id="registerDiv">
             <br>
             <br>

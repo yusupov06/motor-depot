@@ -17,7 +17,6 @@
 
 <img class="home-img" src="../../static/images/cars.webp" alt=" Cars ">
 
-
 <c:if test="${sessionScope.current_user.permissions.contains('EDIT_CAR') && sessionScope.editing!=null}">
 
     <div class="container">

@@ -28,6 +28,7 @@ public class CruisesCommand implements Command {
         int pagee = Integer.parseInt(request.getParameter(PAGINATION));
         UserDTO currentUser = (UserDTO) session.getAttribute(SESSION_ATTRIBUTE_CURRENT_USER);
         Page<CruiseDTO> byPage;
+
         if (currentUser.getRole().equals(UserRole.DRIVER.name())){
             byPage = cruiseService.findByPageAndDriver(pagee, PAGE_COUNT, currentUser.getId());
         } else {

@@ -50,20 +50,6 @@ public class UserDaoImpl implements UserDao {
 
     }
 
-    private User getUserByResult(ResultSet set) throws SQLException {
-        User user = new User();
-        user.setId(set.getLong(ID));
-        user.setFirstName(set.getString(FIRST_NAME));
-        user.setLastName(set.getString(LAST_NAME));
-        user.setPhoneNumber(set.getString(PHONE_NUMBER));
-        user.setPassword(set.getString(PASSWORD));
-        user.setStatus(UserStatus.defineValue(set.getString(STATUS)));
-        long roleId = set.getLong(ROLE_ID);
-        Role role = roleDao.findById(roleId).orElseThrow();
-        user.setRole(role);
-        return user;
-    }
-
     @Override
     public void delete(Long id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
@@ -112,7 +98,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findNameById(long id) throws DaoException {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(FIND_WITOUT_ROLE_BY_ID);
+            PreparedStatement statement = connection.prepareStatement(FIND_WITHOUT_ROLE_BY_ID);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             User user;
@@ -134,7 +120,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean existsByPhoneNumber(String phoneNumber) {
         try (Connection connection = ConnectionPool.getInstance().getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(FIND_NAME_BY_PHONE_NUMBER);
+            PreparedStatement statement = connection.prepareStatement(EXISTS_BY_PHONE_NUMBER);
             statement.setString(1, phoneNumber);
             ResultSet resultSet = statement.executeQuery();
 
@@ -145,6 +131,21 @@ public class UserDaoImpl implements UserDao {
             throw new DaoException(e.getMessage());
         }
         return false;
+    }
+
+    @Override
+    public Optional<User> findWithoutPermissionsById(long id) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(FIND_BY_ID);
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            User user = null;
+            if (resultSet.next())
+                user = getUserWithoutPermissionsByResult(resultSet);
+            return Optional.ofNullable(user);
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        }
     }
 
 
@@ -194,5 +195,34 @@ public class UserDaoImpl implements UserDao {
             throw new DaoException(e.getMessage());
         }
     }
+
+    private User getUserWithoutPermissionsByResult(ResultSet resultSet) throws SQLException {
+        User user = new User();
+        getUser(user, resultSet);
+        long roleId = resultSet.getLong(ROLE_ID);
+        Role role = new Role();
+        role.setId(roleId);
+        user.setRole(role);
+        return user;
+    }
+
+    private void getUser(User user, ResultSet resultSet) throws SQLException {
+        user.setId(resultSet.getLong(ID));
+        user.setFirstName(resultSet.getString(FIRST_NAME));
+        user.setLastName(resultSet.getString(LAST_NAME));
+        user.setPhoneNumber(resultSet.getString(PHONE_NUMBER));
+        user.setPassword(resultSet.getString(PASSWORD));
+        user.setStatus(UserStatus.defineValue(resultSet.getString(STATUS)));
+    }
+
+    private User getUserByResult(ResultSet set) throws SQLException {
+        User user = new User();
+        getUser(user, set);
+        long roleId = set.getLong(ROLE_ID);
+        Role role = roleDao.findById(roleId).orElseThrow();
+        user.setRole(role);
+        return user;
+    }
+
 
 }

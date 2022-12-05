@@ -167,7 +167,7 @@ public class DriverServiceImpl implements DriverService {
 
         User user = new User(rd.getFirstName(),
                 rd.getLastName(), rd.getPhoneNumber(),
-                passwordEncoder.encode(rd.getPassword()), UserStatus.ACTIVE, new Role(1L, UserRole.DRIVER, ""));
+                passwordEncoder.encode(rd.getPassword()), UserStatus.ACTIVE, new Role(3L, UserRole.DRIVER, ""));
 
         Car car;
         if (carDao.existsById(rd.getCarId(), CarDao.EXISTS_BY_ID)) {
@@ -175,8 +175,9 @@ public class DriverServiceImpl implements DriverService {
             car.setId(rd.getCarId());
         } else
             throw ServiceException.throwExc("Car not found with id " + rd.getCarId(), 404);
+
         User adder;
-        if (userDao.existsById(rd.getAddedBy(), UserDao.EXIST_BY_ID)) {
+        if (userDao.existsById(rd.getAddedBy(), UserDao.EXISTS_BY_ID)) {
             adder = new User();
             adder.setId(rd.getAddedBy());
         } else

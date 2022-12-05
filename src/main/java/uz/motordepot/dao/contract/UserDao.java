@@ -25,9 +25,9 @@ public interface UserDao extends Dao<User, Long> {
             """;
     String FIND_BY_PHONE_NUMBER_AND_PASSWORD = "SELECT * FROM USERS WHERE phone_number LIKE ? AND password LIKE ?;";
     String FIND_BY_ID = "SELECT * FROM USERS WHERE id = ?;";
-    String EXIST_BY_ID = "SELECT * FROM USERS WHERE id = ?;";
-    String FIND_WITOUT_ROLE_BY_ID = "SELECT id, firstname,lastname, phone_number,status FROM USERS WHERE id = ?;";
-    String FIND_NAME_BY_PHONE_NUMBER = "SELECT id FROM USERS WHERE phone_number = ?;";
+    String EXISTS_BY_ID = "SELECT * FROM USERS WHERE id = ?;";
+    String FIND_WITHOUT_ROLE_BY_ID = "SELECT id, firstname, lastname, phone_number, status FROM USERS WHERE id = ?;";
+    String EXISTS_BY_PHONE_NUMBER = "SELECT id FROM USERS WHERE phone_number = ?;";
     String FIND_BY_PHONE_NUMBER = "SELECT * FROM USERS WHERE phone_number = ?;";
     String FIND_ALL = "SELECT * FROM USERS order by id desc;";
     String FIND_BY_PAGE = "SELECT * FROM USERS order by id desc offset ? limit ?;";
@@ -64,4 +64,6 @@ public interface UserDao extends Dao<User, Long> {
      * @param phoneNumber
      */
     boolean existsByPhoneNumber(String phoneNumber);
+
+    Optional<User> findWithoutPermissionsById(long id);
 }

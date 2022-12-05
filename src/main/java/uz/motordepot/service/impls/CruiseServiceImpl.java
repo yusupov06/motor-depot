@@ -52,7 +52,7 @@ public class CruiseServiceImpl implements CruiseService {
             request.setId(dto.getRequestId());
         } else
             throw ServiceException.throwExc("Request not found with id " + dto.getRequestId(), 404);
-        if (userDao.existsById(dto.getAddedBy(), UserDao.EXIST_BY_ID)) {
+        if (userDao.existsById(dto.getAddedBy(), UserDao.EXISTS_BY_ID)) {
             user = new User();
             user.setId(dto.getAddedBy());
         } else

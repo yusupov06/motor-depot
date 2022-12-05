@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 import static uz.motordepot.controller.navigation.AttributeParameterHolder.*;
+import static uz.motordepot.controller.navigation.PageNavigation.ADD_CRUISE_PAGE;
 import static uz.motordepot.controller.navigation.PageNavigation.CRUISES_PAGE;
 import static uz.motordepot.controller.router.Router.PageChangeType.FORWARD;
 
@@ -65,9 +66,10 @@ public class FinishAddCruiseCommand implements Command {
 
         }
 
-        if (!validationResult.isEmpty())
+        if (!validationResult.isEmpty()) {
             session.setAttribute(REQ_ATTRIBUTE_FORM_INVALID, validationResult);
-
+            return new Router(ADD_CRUISE_PAGE, FORWARD);
+        }
         return new Router(CRUISES_PAGE, FORWARD);
     }
 }

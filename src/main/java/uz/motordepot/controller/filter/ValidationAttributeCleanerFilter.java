@@ -32,9 +32,7 @@ public class ValidationAttributeCleanerFilter implements Filter {
                 ADD_CRUISE_PAGE,
                 EDIT_CRUISE,
                 EDIT_DRIVER_PAGE,
-                FINISH_EDIT_CRUISE,
-                FINISH_EDIT_CAR,
-                FINISH_EDIT_REQUEST
+                FINISH_EDIT_CRUISE
         );
     }
 

@@ -16,35 +16,9 @@
 
 <jsp:include page="../../fragments/navbar.jsp"></jsp:include>
 
+<img class="home-img" src="../../static/images/cars.webp" alt=" Cruises ">
+
 <c:if test="${sessionScope.current_user.permissions.contains('ADD_CRUISE')}">
-    <%--invalid form--%>
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <br>
-                <br>
-                <ol class="alert-danger">
-                    <c:if test="${sessionScope.invalid_form.requestId!=null}">
-                        <div class="text-danger">
-                                ${sessionScope.invalid_form.requestId}
-                        </div>
-                    </c:if>
-                </ol>
-
-                <ol class="alert-danger">
-                    <c:if test="${sessionScope.invalid_form.driverId!=null}">
-                        <div class="text-danger">
-                                ${sessionScope.invalid_form.driverId}
-                        </div>
-                    </c:if>
-                </ol>
-
-                <br>
-                <br>
-
-            </div>
-        </div>
-    </div>
 
     <%-- Add Cruise --%>
     <div class="container">

@@ -37,7 +37,7 @@ public class RequestServiceImpl implements RequestService {
 
     private Request fromCDto(RequestAddDTO dto) {
         User user;
-        if (userDao.existsById(dto.getAddedBy(), UserDao.EXIST_BY_ID)) {
+        if (userDao.existsById(dto.getAddedBy(), UserDao.EXISTS_BY_ID)) {
             user = new User();
             user.setId(dto.getAddedBy());
         } else{
