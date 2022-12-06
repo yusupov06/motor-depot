@@ -16,6 +16,7 @@ public enum PermissionEnum {
     DELETE_CRUISE,
     SHOW_CRUISES,
     EDIT_CRUISE_STATUS,
+    EDIT_CRUISE_NOTE,
 
     ADD_DRIVER,
     DELETE_DRIVER,

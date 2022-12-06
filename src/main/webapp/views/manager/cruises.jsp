@@ -1,4 +1,5 @@
 <%@ page import="uz.motordepot.controller.command.CommandType" %>
+<%@ page import="uz.motordepot.controller.navigation.AttributeParameterHolder" %>
 <%@ page import="uz.motordepot.entity.enums.CruiseStatus" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -93,6 +94,7 @@
                                 <td class="column-row">Request</td>
                                 <td class="column-row">Added At</td>
                                 <td class="column-row">Status</td>
+                                <td class="column-row">Note</td>
                                 <td class="column-row" colspan="2"> Action</td>
                             </tr>
                             </thead>
@@ -116,12 +118,14 @@
                                         <li>${cruise.request.name}</li>
                                         <li>From: ${cruise.request.from}</li>
                                         <li>To: ${cruise.request.to}</li></span>
-                                        <li>Characteristics: ${cruise.request.characteristics}</li></span>
+                                        <li>Characteristics: ${cruise.request.characteristics}</li>
+                                        </span>
                                     </td>
 
                                     <td class="column-1"><span>
                                             ${cruise.addedAt}
                                     </td>
+
                                     <c:choose>
 
                                         <c:when test="${sessionScope.current_user.permissions.contains('EDIT_CRUISE_STATUS')}">
@@ -129,7 +133,14 @@
                                                 <!-- Button trigger modal -->
                                                 <button type="button" style="text-align: center" class="btn btn-primary"
                                                         data-toggle="modal"
-                                                        data-target="#exampleModal">
+                                                        data-target="#exampleModal"
+                                                        onclick="
+                                                                document.getElementById('created').href='${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.CREATED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}'
+                                                                document.getElementById('on_a_way').href='${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.ON_A_WAY}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}'
+                                                                document.getElementById('finished').href='${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.FINISHED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}'
+                                                                document.getElementById('completed').href='${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.COMPLETED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}'
+                                                                "
+                                                >
                                                         ${cruise.status}
                                                 </button>
 
@@ -141,20 +152,26 @@
                                                         <div class="modal-content">
                                                             <div class="modal-body">
                                                                 <a class="btn btn-light"
-                                                                   href="${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.CREATED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}">
+                                                                   id="created"
+                                                                   href="${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.CREATED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}"
+                                                                >
                                                                         ${CruiseStatus.CREATED}
                                                                 </a>
                                                                 <a class="btn btn-light"
-                                                                   href="${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.ON_A_WAY}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}">
+                                                                   id="on_a_way"
+                                                                   href="${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.ON_A_WAY}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}"
+                                                                >
                                                                         ${CruiseStatus.ON_A_WAY}
                                                                 </a>
                                                                 <a class="btn btn-light"
+                                                                   id="finished"
                                                                    href="${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.FINISHED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}">
                                                                         ${CruiseStatus.FINISHED}
                                                                 </a>
 
                                                                 <c:if test="${sessionScope.current_user.role == 'MANAGER'}">
                                                                     <a class="btn btn-light"
+                                                                       id="completed"
                                                                        href="${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_STATUS}&status=${CruiseStatus.COMPLETED}&currentId=${cruise.id}&page=${sessionScope.resultPage.currentPage}">
                                                                             ${CruiseStatus.COMPLETED}
                                                                     </a>
@@ -181,6 +198,31 @@
 
                                     </c:choose>
 
+                                    <c:choose>
+                                        <c:when test="${sessionScope.current_user.permissions.contains('EDIT_CRUISE_NOTE')}">
+                                            <td class="column-row">
+                                                <label for="note${cruise.id}"></label>
+                                                <input type="text" class="form-control" id="note${cruise.id}"
+                                                       onchange="document.getElementById('sending${cruise.id}').href='${pageContext.request.contextPath}/controller?command=${CommandType.EDIT_CRUISE_NOTE}&currentId=${cruise.id}&note='+document.getElementById('note${cruise.id}').value"
+                                                       name="${AttributeParameterHolder.PARAMETER_CRUISE_NOTE}"
+                                                       value="${cruise.note}"
+                                                       placeholder=" note ">
+                                                <a class="btn btn-outline-danger"
+                                                   id="sending${cruise.id}"
+                                                   href="/"
+                                                >
+                                                    save
+                                                </a>
+                                            </td>
+                                        </c:when>
+
+                                        <c:otherwise>
+                                            <td class="column-1">
+                                                    ${cruise.note}
+                                            </td>
+                                        </c:otherwise>
+
+                                    </c:choose>
 
                                     <c:if test="${sessionScope.current_user.permissions.contains('EDIT_CRUISE')}">
                                         <td class="column-row">
@@ -217,7 +259,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                             <script>
                                                 // Get the modal

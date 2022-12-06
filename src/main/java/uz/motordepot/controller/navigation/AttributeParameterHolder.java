@@ -45,6 +45,7 @@ public final class AttributeParameterHolder {
     public static final String PARAMETER_CRUISE_DRIVER_ID = "driverId";
     public static final String PARAMETER_CRUISE_REQUEST_ID = "requestId";
     public static final String PARAMETER_CRUISE_STATUS = "status";
+    public static final String PARAMETER_CRUISE_NOTE = "note";
 
     /**
      * PAGINATION -> getting page

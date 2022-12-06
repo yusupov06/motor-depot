@@ -23,7 +23,9 @@ public class CruiseMapper implements BaseMapper<
         return new CruiseDTO(entity.getId(),
                 driverMapper.toDto(entity.getDriver()),
                 requestMapper.toDto(entity.getRequest()),
-                entity.getStatus().name(), entity.getAddedAt());
+                entity.getStatus().name(),
+                entity.getNote(),
+                entity.getAddedAt());
     }
 
     @Override

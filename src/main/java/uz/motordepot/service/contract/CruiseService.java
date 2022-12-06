@@ -21,4 +21,6 @@ public interface CruiseService extends CRUDService<CruiseAddDTO, CruiseDTO> {
     Page<CruiseDTO> findByPageAndDriver(int page, int pageCount, Long driverUserId);
 
     Optional<CruiseDTO> findById(long id);
+
+    void addNote(long cruiseId, String note);
 }

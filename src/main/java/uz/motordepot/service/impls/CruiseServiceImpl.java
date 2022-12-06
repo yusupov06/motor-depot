@@ -147,4 +147,9 @@ public class CruiseServiceImpl implements CruiseService {
         return dao.findById(id).map(cruiseMapper::toDto);
     }
 
+    @Override
+    public void addNote(long cruiseId, String note) {
+        dao.addNote(cruiseId, note);
+    }
+
 }

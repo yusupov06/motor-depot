@@ -76,7 +76,7 @@ public class CruiseDaoImpl implements CruiseDao {
         cruise.setStatus(CruiseStatus.valueOf(resultSet.getString(STATUS)));
         LocalDateTime added_at = resultSet.getTimestamp(ADDED_AT).toLocalDateTime();
         cruise.setAddedAt(added_at);
-
+        cruise.setNote(resultSet.getString(NOTE));
         long addedBy = resultSet.getLong(ADDED_BY);
 
         User user = userDao.findNameById(addedBy)
@@ -211,6 +211,19 @@ public class CruiseDaoImpl implements CruiseDao {
             PreparedStatement statement = connection.prepareStatement(CHANGE_STATUS_BY_ID);
             statement.setLong(2, cruiseId);
             statement.setString(1, changedStatus);
+            statement.execute();
+            return true;
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean addNote(long cruiseId, String note) {
+        try (Connection connection = ConnectionPool.getInstance().getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(CHANGE_NOTE_BY_ID);
+            statement.setLong(2, cruiseId);
+            statement.setString(1, note);
             statement.execute();
             return true;
         } catch (SQLException e) {

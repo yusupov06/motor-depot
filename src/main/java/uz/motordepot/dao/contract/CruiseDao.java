@@ -11,6 +11,7 @@ public interface CruiseDao extends Dao<Cruise, Long> {
     String DRIVER = "driver_id";
     String REQUEST = "request_id";
     String STATUS = "status";
+    String NOTE = "note";
     String ADDED_AT = "added_at";
     String ADDED_BY = "added_by";
     String UPDATE_QUERY = "update cruise set driver_id = ?, request_id = ?, status = ? where id = ?;";
@@ -32,6 +33,7 @@ public interface CruiseDao extends Dao<Cruise, Long> {
     String FIND_BY_PAGE = "SELECT * FROM cruise order by id desc offset ? limit ?;";
     String EXIST_BY_ID = "SELECT id FROM cruise where id = ?;";
     String CHANGE_STATUS_BY_ID = "update cruise set status = ? where id = ?;";
+    String CHANGE_NOTE_BY_ID = "update cruise set note = ? where id = ?;";
 
     /**
      * Finding all {@link Cruise}s of which manager is this
@@ -73,4 +75,6 @@ public interface CruiseDao extends Dao<Cruise, Long> {
     List<Cruise> findByPageAndDriverUserId(int page, int size, Long driverUserId);
 
     boolean changeStatusById(String changedStatus, long cruiseId);
+
+    boolean addNote(long cruiseId, String note);
 }

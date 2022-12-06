@@ -23,6 +23,7 @@ public class CruiseDTO {
     private DriverDTO driver;
     private RequestDTO request;
     private String status;
+    private String note;
     private LocalDateTime addedAt;
 
 }

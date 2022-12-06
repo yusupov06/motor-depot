@@ -91,7 +91,8 @@ public class UserPermissionFilter implements Filter {
                         FINISH_SIGN_IN,
                         SIGN_UP,
                         CRUISES,
-                        EDIT_CRUISE_STATUS
+                        EDIT_CRUISE_STATUS,
+                        EDIT_CRUISE_NOTE
                 )
         );
     }

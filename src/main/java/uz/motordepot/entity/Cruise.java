@@ -20,6 +20,7 @@ public class Cruise extends AbsLongEntity {
     private Driver driver;
     private Request request;
     private CruiseStatus status;
+    private String note;
 
     public Cruise(Driver driver, Request request, CruiseStatus status, User addedBy){
         super(addedBy);

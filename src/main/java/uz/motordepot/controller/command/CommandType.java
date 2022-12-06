@@ -31,6 +31,7 @@ public enum CommandType {
     ADD_CRUISE(new FinishAddCruiseCommand()),
     EDIT_CRUISE(new EditCruiseCommand()),
     EDIT_CRUISE_STATUS(new EditCruiseStatusCommand()),
+    EDIT_CRUISE_NOTE(new EditCruiseNoteCommand()),
     FINISH_EDIT_CRUISE(new FinishEditCruiseCommand()),
     DELETE_CRUISE(new DeleteCruiseCommand()),
 
