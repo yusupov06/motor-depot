@@ -36,6 +36,7 @@ create table if not exists request
     from_    varchar not null,
     to_      varchar not null,
     status   varchar,
+    characteristics varchar,
     added_at timestamp default now(),
     added_by bigint
     references users
@@ -51,6 +52,7 @@ create table if not exists car
     car_model  varchar not null,
     car_number varchar not null,
     condition  varchar,
+    characteristics  varchar,
     added_at   timestamp default now(),
     added_by   bigint
     references users
