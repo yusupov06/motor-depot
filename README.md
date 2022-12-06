@@ -37,6 +37,7 @@ The platform supports the following roles and their corresponded functionality.
 |  DELETE_CRUISE     |    +    |      +      |        |
 |  SHOW_CRUISES      |    +    |             |    +   |
 |  EDIT_CRUISE_STATUS|    +    |             |    +   |
+|  EDIT_CRUISE_NOTE  |         |             |    +   |
 |  ADD_DRIVER        |    +    |             |        |
 |  DELETE_DRIVER     |    +    |             |        |
 |  EDIT_DRIVER       |    +    |             |        |
@@ -80,7 +81,7 @@ PostgreSQL database is used to store data.
 <br>
 
 <p align="center">
-  <kbd> <img alt="Add Request" src="src/main/resources/images/addRequest.gif" width="100^" style="border-radius:10px"\></kbd> 
+  <kbd> <img alt="Add Request" src="src/main/resources/images/addRequest.gif"  style="border-radius:10px"\></kbd> 
 </p>
 <p align="center">Adding Request</p>
 <br>
